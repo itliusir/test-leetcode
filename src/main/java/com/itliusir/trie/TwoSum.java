@@ -1,4 +1,4 @@
-package com.itliusir.array;
+package com.itliusir.trie;
 
 import java.util.HashMap;
 import java.util.Map;
