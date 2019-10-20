@@ -27,7 +27,36 @@ public class ThreeSum {
         System.out.println(threeSum(a));
     }
 
+    /**
+     * method 1
+     * <p>
+     * 暴力求解
+     *
+     * @author liugang
+     * @date 2019-10-19 16:27:50
+     */
     public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> resultList = new ArrayList<>();
+        // 去重
+        Arrays.sort(nums);
+        Map<String,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length - 2; i++) {
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                for (int k = j + 1; k < nums.length; k++) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        if (map.get(nums[i] + "" + nums[j] + "" + nums[k] + "") == null) {
+                            resultList.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                        }
+                        map.put(nums[i] + "" + nums[j] + "" + nums[k] + "", 1);
+                    }
+                }
+            }
+
+        }
+        return resultList;
+    }
+
+    public static List<List<Integer>> threeSumTwo(int[] nums) {
         if (nums == null || nums.length < 3) {
             return new ArrayList<>();
         }
