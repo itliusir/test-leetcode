@@ -28,12 +28,6 @@ import java.util.Stack;
  */
 public class InorderTraversal {
 
-    String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = null;
