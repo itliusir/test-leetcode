@@ -26,19 +26,27 @@ package com.itliusir.array;
  * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
  *
  * @author liugang
- * @since 2019/8/21
+ * @since 2019-11-03
  */
 public class StockTwo {
 
     public static void main(String[] args) {
-        int[] prices = {7, 1, 5, 3, 6, 4};
+        int[] prices = {2, 4, 6, 9};
         System.out.println(new StockTwo().maxProfit(prices));
     }
 
+    /**
+     * method 1 -> time O(n) space O(n)
+     * <p>
+     * 贪心算法
+     *
+     * @author liugang
+     * @date 2019-11-03 22:26:32
+     */
     public int maxProfit(int[] prices) {
         int temp = 0;
-        for (int i = 0; i < prices.length; i++) {
-            if (i < prices.length - 1 && prices[i] < prices[i + 1]) {
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i] < prices[i + 1]) {
                 temp += prices[i + 1] - prices[i];
             }
         }
