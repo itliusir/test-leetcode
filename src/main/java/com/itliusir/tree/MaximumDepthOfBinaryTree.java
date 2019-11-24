@@ -61,7 +61,7 @@ public class MaximumDepthOfBinaryTree {
         if (root.right != null) {
             level2 = doMaxDepth(root.right);
         }
-        return Math.min(level1, level2) + 1;
+        return Math.max(level1, level2) + 1;
     }
 
 

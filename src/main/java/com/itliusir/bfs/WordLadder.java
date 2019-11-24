@@ -44,8 +44,8 @@ public class WordLadder {
         wordList.add("dog");
         wordList.add("lot");
         wordList.add("log");
-        wordList.add("cog");
-        System.out.println(new WordLadder().ladderLengthTwo(beginWord, endWord, wordList));
+        //wordList.add("cog");
+        System.out.println(new WordLadder().ladderLengthThree(beginWord, endWord, wordList));
     }
 
 
@@ -139,5 +139,48 @@ public class WordLadder {
             }
         }
         return nextSet.size() > endSet.size() ? doLadderLength(endSet, nextSet, remainWordList, cnt) : doLadderLength(nextSet, endSet, remainWordList, cnt);
+    }
+
+    public int ladderLengthThree(String beginWord, String endWord, List<String> wordList__) {
+        Set<String> wordList = new HashSet<>(wordList__);
+        Set<String> beginSet = new HashSet<>(),
+                    endSet = new HashSet<>();
+
+        int len = 1;
+        HashSet<String> visited = new HashSet<>();
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+            if (beginSet.size() > endSet.size()) {
+                Set<String> set = beginSet;
+                beginSet = endSet;
+                endSet = set;
+            }
+            Set<String> temp = new HashSet<>();
+            for (String word : beginSet) {
+                char[] chs = word.toCharArray();
+
+                for (int i = 0; i < chs.length; i++) {
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        char old = chs[i];
+                        chs[i] = c;
+                        String target = String.valueOf(chs);
+
+                        if (endSet.contains(target)) {
+                            return len + 1;
+                        }
+
+                        if (!visited.contains(target) && wordList.contains(target)) {
+                            temp.add(target);
+                            visited.add(target);
+                        }
+                        chs[i] = old;
+                    }
+                }
+            }
+            beginSet = temp;
+            len ++;
+        }
+        return 0;
     }
 }
