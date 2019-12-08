@@ -30,12 +30,45 @@ package com.itliusir.bit;
  */
 public class NumberOfOneBits {
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         int n = 3;
-        System.out.println(new NumberOfOneBits().hammingWeight(n));
+        System.out.println(new NumberOfOneBits().hammingWeightTwo(n));
     }
 
+    /**
+     * method 1 -> time O(1) space O(1)
+     * 
+     * 遍历二进制中1的个数，每次通过与1的与运算来判断，下次循环重新移位
+     * 
+     * @author liugang
+     * @date 2019-12-01 17:16:05
+     */
     public int hammingWeight(int n) {
+        int ones = 0;
+        int mask = 1;
+        for (int i = 0; i < 32; i++) {
+            if ((n & mask) != 0) {
+                ones++;
+            }
+            mask <<= 1;
+        }
+        return ones;
+    }
 
-    }*/
+    /**
+     * method 2 -> time O(1) space O(1)
+     *
+     * 按需计算，性能更好
+     *
+     * @author liugang
+     * @date 2019-12-01 17:18:50
+     */
+    public int hammingWeightTwo(int n) {
+        int ones = 0;
+        while (n != 0) {
+            ones ++;
+            n = n & (n - 1);
+        }
+        return ones;
+    }
 }
